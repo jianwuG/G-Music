@@ -1,0 +1,29 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1604904798354'); /* IE9 */
+  src: url('iconfont.eot?t=1604904798354#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPgAAsAAAAACGgAAAORAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDHAqEKIN/ATYCJAMQCwoABCAFhG0HQxtsB8iusClj9phGSdkyFCDr2d07/dn/UBwi+Fr77Dczf29u95gDKK9iAW1YMnggYRIhI0yiothH2HgWjv/PrqpZiLXSMFvYjd8zrnnVtcoAJ8E6SOATI4fn9Hz4a76fFwm4CtNKDaBIu9AUWYjMpGm83Cnq64KDhmcJDpx/cCz1o/AfLO8rXaKSoxPwuXVA3bgm20Qm5ltg5xDPYD9PoLUkk+JAeW0rclNopwXiplHPIbeYUykhhWppcq4tiOcQavLpMyDP3N+Pn9CGCkkvQzv3yOUyERV+cf5i5eN/3MhGQNWfH9JNZOyEFOJqbvA8Rz+xk6P2c7CTXZCqSvS1o3yx/v8n9VqMVf+XR0gy0UArHQDrlMx8weQRfJFH4ktOGdHl5Ip+vEbwC7AL+xVJnnP9IsK8+MDScmkHHWSntPP0a/njqPUJknCOI9qIkzRCemjKnPQxEqdYSujecaCz1A0QCse0gfffvH/ffv+u1bYzPlHbDqY67951PnzofvzY9vStbBnqulFFuRxlPKeTZ2+ltehqpm+12Bq7p+luO0tzL5xsd9QMtboeKP9b1MeY/lQ1c/2Zmhpe8tByXZA6xVNiVE/VJeSs15E+Jn2QTvqKQp/tu6q+lqJUocub+Wd/VfxAFH0c29A5VQmZYuSb2iYmDviUlpoy777nGv61KNGXNX+PXyWNXKydN0mPLonEpy4vn+Ypdnjed/L8Si7nbuzHg4HuRJRjV5glZrd3hrodlqOWHdqb3vWyph5o6CCE7qIH5FOOnkC+54iB/mMv3L9QIDj8yZgy4Jv7qwYHfF49DU3/cXkF6EGqaqueuKrmVPlqNFcpb62p/IWKE5EcCa3u4TlnGPO5D/Nk7VJCNRlC0mcRsmojsmB3Qk9nHRrVbmjtUHFzZxzlKIoGtpsBCCOOIRnyEbIRz5EF+wl6pvyGxkgwaJ2KwHt2Nsfco4QCx0DE/Bg2CsQmGR7m4ZU3g37IwtGoxiW3A5WNYaxRqpPpCrAB7eMCeVivZUzCEiVWXA4vA4uFYDslJhCY0sCYPVulkvK+SSkQK/KwHwU4DBBhvDGYkYCwkezFjEfq55sBvSEWHFrS9yPdDlAy494xDSV1DWSF0Var71xeIxump8UwEkxCEVZYOfiBRU8QmD3/KBMgYJQMLWJ22VQ0T6prVI5vtl7hJWhpX1CCEkY4EWgOgAUYuLQARwWDawmxEBlEhAAAAAA=') format('woff2'),
+  url('iconfont.woff?t=1604904798354') format('woff'),
+  url('iconfont.ttf?t=1604904798354') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1604904798354#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Delete:before {
+  content: "\e605";
+}
+
+.icon-Search:before {
+  content: "\e607";
+}
+
+.icon-Colosed:before {
+  content: "\e60d";
+}
+
