@@ -1,6 +1,7 @@
 <template>
     <div>
-        <Search :searchType="searchType"></Search>
+        <Search @getPrompt="getPrompt"></Search>
+        <Prompt :searchWord="searchWord"></Prompt>
         <Hot></Hot>
     </div>
 </template>
@@ -8,6 +9,7 @@
 <script lang="js">
     import Search from '@components/search/search';
     import Hot from '@components/search/hot';
+    import Prompt from '@components/search/prompt';
 
     import {ref} from 'vue'
 
@@ -15,12 +17,19 @@
         name: "SearchView",
         components: {
             Search,
-            Hot
+            Hot,
+            Prompt,
         },
         setup() {
             const searchType = ref(1);
+            const searchWord = ref('');
+            function getPrompt(val) {
+                searchWord.value=val;
+            }
             return{
-                searchType
+                searchType,
+                searchWord,
+                getPrompt
             }
         },
 

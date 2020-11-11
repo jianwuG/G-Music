@@ -16,13 +16,27 @@
         props:{
             searchType:Number
         },
-        setup(props){
-            const searchType=computed(()=>{
-                return props.searchType
-            });
-                return {
-                    searchType
+        setup(props,{emit}){
+            const keyWord=ref('');//搜索输入
+            function getSuggest(){
+                console.log('11111111111',keyWord.value);
+                emit('getPrompt',keyWord.value);
             }
+            // const {getSuggest}=usePrompt(keyWord);
+            return {
+                keyWord,
+                getSuggest
+            }
+        },
+
+    }
+
+    function usePrompt(keyWord){
+        const getSuggest=()=>{
+            console.log('1111111111122',keyWord.value);
+        }
+        return {
+            getSuggest
         }
     }
 </script>
