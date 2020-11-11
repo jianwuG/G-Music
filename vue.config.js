@@ -26,9 +26,9 @@ module.exports = {
         https: false,
         hotOnly: true, // 热更新
         proxy: {
-            "/api": {
+            "/": {
                 target:
-                    "localhost:3000", // 目标代理接口地址
+                    "http://localhost:3000", // 目标代理接口地址 http://勿忘
                 secure: false,
                 changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
 

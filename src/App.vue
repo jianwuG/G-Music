@@ -1,19 +1,19 @@
 <template>
  <div>
-    <Search></Search>
+    <searchView></searchView>
   </div>
 </template>
 
 <script lang="js">
 import '@assets/fontIcon/iconfont.css'
-import Search from '@components/search/search'
+import searchView from '@components/search/searchView'
 export default {
   name: 'App',
   setup(){
 
   },
     components:{
-        Search
+        searchView
     }
 
 }

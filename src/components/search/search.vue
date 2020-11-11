@@ -1,35 +1,28 @@
 <template>
-    <div>
-        <div class="search-div">
-            <i class="iconfont icon-Search"></i>
-            <input class="search-input" type="text" v-model="keyWord" placeholder="搜索歌曲" onkeyup.13="getSearchList"/>
-            <i class="iconfont icon-Colosed"></i>
+    <div class="search-div">
+        <i class="iconfont icon-Search"></i>
+        <input class="search-input" type="text" v-model="keyWord" placeholder="搜索歌曲" @keyup.13="getSearchList()"
+               @input="getSuggest"/>
+        <i class="iconfont icon-Colosed"></i>
+        <div>
         </div>
     </div>
 </template>
 
-<script lang="js">
-    import {ref} from 'vue'
-    import Http from '@util/api'
-
+<script>
+    import {ref,reactive,toRefs,computed} from 'vue'
     export default {
         name: "Search",
-        setup() {
-            const msg = ref(1);
-            const keyWord=ref('');
-            async function getSearchList(){
-                 console.log('111111111111',keyWord.value);
-            }
-
-            return {
-                msg,
-                keyWord
-            }
+        props:{
+            searchType:Number
         },
-        async mounted(){
-            let url='/api/search/hot';
-            let body=await Http.get(url,{});
-            console.log('1111111111111111',body);
+        setup(props){
+            const searchType=computed(()=>{
+                return props.searchType
+            });
+                return {
+                    searchType
+            }
         }
     }
 </script>
@@ -54,5 +47,4 @@
         background: #f2f2f2;
         outline: none;
     }
-
 </style>

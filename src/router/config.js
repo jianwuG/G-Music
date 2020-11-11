@@ -1,12 +1,12 @@
 export const routes=[{
     path:'/',
     redirect:{
-        name:'Search'
+        name:'SearchView'
     }
 },{
-    path:'/search',
-    name:'Search',
-    component:()=>import('@components/search/search.vue'),
+    path:'/searchView',
+    name:'SearchView',
+    component:()=>import('@components/search/searchView.vue'),
 },
     {
         path:'/detail',
