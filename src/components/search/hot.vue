@@ -2,7 +2,9 @@
     <div class="hot-div">
          <div class="hot-div-head">热歌榜</div>
          <div class="hot-div-list">
-             <div v-for="(item,index) in searchHotList" :key="index" data-url="item.iconUrl" class="div-list-item">
+             <div v-for="(item,index) in searchHotList" :key="index" data-url="item.iconUrl" class="div-list-item"
+             @click="goList(item.searchWord)"
+             >
                  <div class="list-item-index">{{index+1}}</div>
                  <div class="list-item-content">
                      <div class="item-content-name">
@@ -20,20 +22,28 @@
 </template>
 
 <script>
-    import {reactive,toRefs,onMounted} from 'vue';
+    import {reactive,toRef,onMounted} from 'vue';
     import Http from '@util/api'
     export default {
         name: "hot",
-        setup(){
+        setup(props,{emit}){
             const state=reactive({
                 searchHotList:[],
             });
+           function goList(searchWord){
+               console.log('zzzzzzzzzzzz',searchWord);
+                emit('getSearchList',searchWord);
+            }
             onMounted(async ()=>{
                 let body=await Http.get('/search/hot/detail');
                 console.log('1111',body.data.data);
                 state.searchHotList=[...body.data.data];
             });
-            return toRefs(state);
+           const searchHotList=toRef(state,'searchHotList')
+            return {
+                searchHotList,
+                goList
+            };
         }
     }
 </script>
@@ -43,6 +53,7 @@
      margin-top: 40px;
      display: flex;
      flex-direction: column;
+     padding: 0 20px;
 
  }
     .hot-div-head{

@@ -1,9 +1,9 @@
 <template>
     <div class="search-div">
-        <i class="iconfont icon-Search"></i>
-        <input class="search-input" type="text" v-model="keyWord" placeholder="搜索歌曲" @keyup.13="getSearchList()"
+        <i class="iconfont icon-sousuo"></i>
+        <input class="search-input" type="text" v-model="keyWord" placeholder="搜索歌曲" @keyup.native.13="getSearchList"
                @input="getSuggest"/>
-        <i class="iconfont icon-Colosed"></i>
+        <i class="iconfont icon-guanbi" @click="clearWord" v-if="keyWord"></i>
         <div>
         </div>
     </div>
@@ -22,10 +22,17 @@
                 console.log('11111111111',keyWord.value);
                 emit('getPrompt',keyWord.value);
             }
+            function clearWord(){
+                keyWord.value='';
+                emit('getPrompt',keyWord.value);
+            }
+            function getSearchList(){
+                console.log('222222222222');
+            }
             // const {getSuggest}=usePrompt(keyWord);
             return {
                 keyWord,
-                getSuggest
+                getSuggest,clearWord,getSearchList
             }
         },
 
@@ -48,6 +55,7 @@
         height: 40px;
         background: #f2f2f2;
         border-radius: 20px;
+        margin: 20px;
     }
 
     .search-div i {

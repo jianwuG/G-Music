@@ -1,6 +1,6 @@
 <template>
  <div>
-    <searchView></searchView>
+     <router-view></router-view>
   </div>
 </template>
 
@@ -28,4 +28,8 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+    *{
+        padding: 0;
+        margin: 0;
+    }
 </style>

@@ -9,8 +9,8 @@ export const routes=[{
     component:()=>import('@components/search/searchView.vue'),
 },
     {
-        path:'/detail',
-        name:'Detail',
-        component:()=>import('@components/detail/detail.vue'),
+        path:'/play',
+        name:'Play',
+        component:()=>import('@components/play/play.vue'),
     }
 ];
