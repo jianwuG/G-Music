@@ -1,7 +1,14 @@
 import axios from 'axios';
+import {Toast} from 'vant'
+
 
 axios.interceptors.request.use(config => {
     console.log('request go');
+    Toast.loading({
+        message: '加载中...',
+        forbidClick: true,
+        loadingType: 'spinner',
+    });
     return config;
 }, err => {
     console.log('请求失败')
@@ -9,6 +16,7 @@ axios.interceptors.request.use(config => {
 })
 //拦截响应
 axios.interceptors.response.use(config => {
+    Toast.clear();
     return config;
 }, err => {
     console.log('响应失败')

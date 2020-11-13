@@ -4,6 +4,7 @@
 |---------------|--------------|
 |     vue       | @3.0.2       |
 |  vue-router   | @4.0.0-rc.2  |
+|  vant@next   | vant@next |
 
 
 ## 参考
@@ -12,3 +13,5 @@
 * [Vue 组合式 API](https://composition-api.vuejs.org/zh/api.html#watcheffect)
 
 * [router next](https://next.router.vuejs.org/)
+
+* [vant](https://vant-contrib.gitee.io/vant/#/zh-CN/home)
