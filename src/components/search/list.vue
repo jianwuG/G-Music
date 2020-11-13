@@ -13,37 +13,29 @@
 </template>
 
 <script>
-    import {reactive,toRef,computed,watchEffect} from 'vue'
+    import {reactive,toRef,onMounted,computed} from 'vue'
+    import {useStore} from 'vuex'
     import Http from '@util/api'
     import router from "../../router";
     export default {
         name: "List",
-        props:{
-            searchListWord:String
-        },
-        setup(props){
+        setup(){
+            const store=useStore();
             const state=reactive({
                 searchList:[]
-            })
-             const searchListWord=computed(()=>{
-                 return props.searchListWord
-             });
-            watchEffect(async ()=>{
-             await getList();
             });
+            const searchWord=computed(()=>{
+                return store.state.searchWord
+            });
+
+            onMounted(async()=>await getList())
            async function getList(){
-               let url='/search?keywords='+searchListWord.value;
+               let url='/search?keywords='+searchWord.value;
                let body=await Http.get(url);
                state.searchList=body.data.result.songs;
             }
-            function goPlay(id){
-               console.log('zzzzzzzzzzzzzzzzzz',id);
-               // router.push({path:'/play',params:{id:id}});//path写法参数会被忽略
 
-                router.push({name:'Play',params:{id:id}})
-                // router.push({name:'Play',replace:true,params:{id:id}})
-                // router.replace({name:'Play',params:{id:id}})
-            }
+            const goPlay=id=>router.push({name:'Play',params:{id:id}});
             const searchList=toRef(state,'searchList')
             return{
                 searchList,

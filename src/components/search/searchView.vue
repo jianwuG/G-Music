@@ -1,11 +1,11 @@
 <template>
     <div>
-        <Search @getPrompt="getPrompt" :searchWord="searchWord"></Search>
-        <Prompt :searchWord="searchWord" @changeType="changeType"
-                @getSearchList="getSearchList"
-                v-if="searchType===2"></Prompt>
-        <Hot v-if="searchType===1" @getSearchList="getSearchList"></Hot>
-        <List v-if="searchType===3" :searchListWord="searchListWord"></List>
+        <Search></Search>
+        <Prompt v-if="searchType===2"></Prompt>
+
+        <History v-if="searchType===1&&historyWordList.length"></History>
+        <Hot v-if="searchType===1" ></Hot>
+        <List v-if="searchType===3" ></List>
     </div>
 </template>
 
@@ -14,8 +14,10 @@
     import Hot from '@components/search/hot';
     import Prompt from '@components/search/prompt';
     import List from '@components/search/list';
+    import History from '@components/search/history';
 
-    import {ref} from 'vue'
+    import {computed} from 'vue';
+    import {useStore} from 'vuex'
 
     export default {
         name: "SearchView",
@@ -23,35 +25,15 @@
             Search,
             Hot,
             Prompt,
-            List
+            List,
+            History
         },
         setup() {
-            const searchType = ref(1);//1显示热搜 2显示搜索提示 3搜索结果
-            const searchWord = ref('');
-            const searchListWord=ref('')
-
-            function getPrompt(val) {
-                searchWord.value=val;
-
-                searchType.value=val?2:1;
-            }
-            function changeType(val){
-                searchType.value=val;
-            }
-            function getSearchList(inputWord = ''){
-                console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzz',inputWord);
-                searchType.value=3;
-                searchListWord.value=inputWord||searchWord.value;
-
-                searchWord.value=searchListWord.value;
-            }
+            const store = useStore();
             return{
-                searchType,
-                searchWord,
-                searchListWord,
-                getPrompt,
-                changeType,
-                getSearchList
+                searchWord:computed(()=>store.state.searchWord),
+                searchType:computed(()=>store.state.searchType),
+                historyWordList:computed(()=>store.state.historyWordList)
             }
         },
 

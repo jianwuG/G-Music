@@ -7,65 +7,42 @@
             <span>{{item.keyword}}</span>
         </div>
     </div>
-
 </template>
 
 <script>
-    import {ref,reactive,toRef,toRefs,computed,onMounted,watchEffect,watch} from 'vue'
+    import {reactive,toRef,toRefs,computed,onMounted,watch} from 'vue'
     import Http from '@util/api'
+    import {useStore} from 'vuex'
     export default {
         name: "prompt",
-        props:{
-            searchWord:String
-        },
         setup(props,{emit}){
             const state=reactive({
                 suggestList:[]
             });
+            const store=useStore();
             const searchWord=computed(()=>{
-                return props.searchWord
+                return store.state.searchWord
             });
+            const goList=(word)=> {store.dispatch('setTypeAndWord',{type:3,word:word});store.dispatch('setHistoryList',{word:searchWord.value,isAdd:true});};
 
-            const oldSearchWord=ref('');//空格清空相同不请求数据
+            onMounted(async ()=>searchWord&&await getSuggestList());
 
-            watchEffect((onInvalidate)=>{
-                let word=searchWord.value.replace(/\s+/g,"")
-                if(oldSearchWord.value!==word){
-                    oldSearchWord.value=word;
-                    getSuggestList();
+            watch(searchWord,async (searchWord,prevSearchWord)=>{
+                if(prevSearchWord!==searchWord.replace(/\s+/g,"")){
+                  await getSuggestList();
                 }
-                onInvalidate(() => {
-                    // id 改变时 或 停止侦听时
-                    // 取消之前的异步操作
-                    console.log('先执行这个，后执行watchEffect内函数');
-                });
+
             });
-            // watch(searchWord, () => {
-            //     console.log('zzzzzzzzzzzzz11',searchWord.value);
-            // });
             async function getSuggestList(){
+                console.log('searchWord11111111111',searchWord.value);
                 if(searchWord.value){
                     let url='/search/suggest?keywords='+searchWord.value+'&type=mobile';
                     const body=await Http.get(url);
                     state.suggestList=body.data.result.allMatch;
                     console.log('获取输入提示1111',body.data.result.allMatch,toRefs(state));
                 }
-                else{
-                    state.suggestList=[];
-                    emit('changeType',1);
-                }
             };
-
-            function goList(word){
-                console.log('1111111111111',word);
-                emit('getSearchList',word);
-            }
-
-            // 方法1
-            // return toRefs(state)
-
             const suggestList=toRef(state,'suggestList');
-            //
             return {
                 suggestList,
                 goList,

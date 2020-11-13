@@ -4,7 +4,16 @@
 |---------------|--------------|
 |     vue       | @3.0.2       |
 |  vue-router   | @4.0.0-rc.2  |
-|  vant@next   | vant@next |
+|  vuex         | @4.0.0-rc.1  |
+|  vant@next   | vant@next     |
+
+
+### 运行
+* 依赖
+  * git clone https://github.com/Binaryify/NeteaseCloudMusicApi.git
+  * npm i
+  * node app.js
+* 本项目
 
 
 ## 参考
@@ -12,6 +21,17 @@
 
 * [Vue 组合式 API](https://composition-api.vuejs.org/zh/api.html#watcheffect)
 
-* [router next](https://next.router.vuejs.org/)
+* [vue-router next](https://next.router.vuejs.org/)
+
+* [vuex next](https://next.vuex.vuejs.org/)
 
 * [vant](https://vant-contrib.gitee.io/vant/#/zh-CN/home)
+
+
+
+
+### 记录
+|    tag        |    更新描述       |   更新日期      |
+|---------------|----------------- |--------------   |
+|     main      |   基础版本        |    11/13        |
+|    dev-1      |   vuexnext改造    |    11/13        |
