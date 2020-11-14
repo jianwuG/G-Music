@@ -27,11 +27,11 @@
 
 * [vant](https://vant-contrib.gitee.io/vant/#/zh-CN/home)
 
-
+* [ts封装axios](https://www.jianshu.com/p/297db1eff169)
 
 
 ### 更新记录
 
 #### main(基础版本 )    11/13
-#### dev-1(vuexnext改造) 11/14(历史记录持久化，vuex4+v-model处理)
+#### dev-1(vuexnext改造) 11/14(简单版ts修改)
 

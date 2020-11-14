@@ -1,29 +1,13 @@
 import {createStore,createLogger } from 'vuex';
-
-// const state=function state(){
-//     return {
-//         searchWord: '333',//搜索
-//     }
-// };
-// const getters=function getters(){
-//     return {
-//         searchWord: '333',//搜索
-//     }
-// };
-
-// plugins: [createPersistedState()],
-
+const historyList:string|null=localStorage.getItem('historyList');
 export const store = createStore({
     plugins: [createLogger()],
     state() {
         return {
             searchWord: '',//搜索
             searchType:1,//1显示热搜 2显示搜索提示 3搜索结果
-            historyWordList:JSON.parse(localStorage.getItem('historyList')),//搜索历史
+            historyWordList:historyList&&JSON.parse(historyList),//搜索历史
         }
-    },
-    getters() {
-
     },
     actions: {
 
@@ -34,7 +18,6 @@ export const store = createStore({
          */
         setWord({commit}, word) {
             commit('setSearchWord', word);
-            console.log('111xx11111111111111111',word);
         },
         setType({commit}, type){
             commit('setSearchType', type)
@@ -48,31 +31,24 @@ export const store = createStore({
         },
     },
     mutations: {
-        setSearchWord(state, word) {
+        setSearchWord(state:any, word){
             state.searchWord = word;
             // this.commit('setSearchType',word?2:1);
             state.searchType = word?2:1;
-            console.log('1111111111111111111',word);
-
         } ,
-        setSearchType(state, type) {
+        setSearchType(state:any, type:number) {
             state.searchType = type;
-            console.log('1111111111111111111',type);
-
         },
-        setSearchHistoryList(state, info) {
+        setSearchHistoryList(state:any, info:{isAdd:boolean,word:string}) {
             const {isAdd,word}={...info};
-            console.log('zzzzzzzzzzzzzzzzzzzzzzzz',info,isAdd,Array.isArray(state.historyWordList));
-
             if(isAdd){
-                let hasOne=state.historyWordList.some(item=>item===word);
+                let hasOne=state.historyWordList.some((item:string)=>item===word);
 
                 !hasOne&&word&&state.historyWordList.push(word);
-                localStorage.setItem('historyList',JSON.stringify(state.historyWordList))
-                console.log('setHistoryList11111111',word,hasOne,state.historyWordList);
+                localStorage.setItem('historyList',JSON.stringify(state.historyWordList));
             }
             else{
-                state.historyWordList.length=0;
+                state.historyWordList=[];
                 localStorage.setItem('historyList',JSON.stringify([]))
 
             }

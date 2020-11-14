@@ -27,7 +27,7 @@
     import Http from '@util/api'
     export default {
         name: "hot",
-        setup(props,{emit}){
+        setup(){
             const state=reactive({
                 searchHotList:[],
             });

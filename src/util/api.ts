@@ -22,8 +22,8 @@ axios.interceptors.response.use(config => {
     console.log('响应失败')
     return err.response
 })
-const Http={};
-Http.get = function (url, option) {
+
+const get = function (url:string, option:any) {
     return new Promise((resolve, reject) => {
         axios.get(url, option).then((res) => {
             resolve(res);
@@ -34,7 +34,7 @@ Http.get = function (url, option) {
 
 };
 
-Http.post = function (url, option) {
+const post= function (url:string, option:any) {
 
     return new Promise((resolve, reject) => {
         axios.post(url,
@@ -46,5 +46,8 @@ Http.post = function (url, option) {
         })
     })
 };
-
+const Http={
+    get:get,
+    post:post
+};
 export default Http;

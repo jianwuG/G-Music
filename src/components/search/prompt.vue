@@ -15,7 +15,7 @@
     import {useStore} from 'vuex'
     export default {
         name: "prompt",
-        setup(props,{emit}){
+        setup(){
             const state=reactive({
                 suggestList:[]
             });

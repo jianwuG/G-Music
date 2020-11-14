@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import {ref, reactive, toRefs, computed, onMounted} from 'vue';
+    import {computed} from 'vue';
     import {useStore} from 'vuex'
 
     export default {
