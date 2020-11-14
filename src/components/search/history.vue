@@ -21,7 +21,7 @@
            const historyList=computed(()=>{
               return store.state.historyWordList;
            });
-           const clear=store.dispatch('setHistoryList',{word:'',isAdd:false});
+           const clear=()=>store.dispatch('setHistoryList',{word:'',isAdd:false});
 
            return{
               historyList,
@@ -37,6 +37,8 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
    }
    .item-all-div{
       display: flex;
@@ -55,7 +57,6 @@
    .del-icon{
       display: flex;
       justify-content: flex-end;
-      margin-right: 20px;
    }
 </style>
 <!--vuex-persistedstate-->

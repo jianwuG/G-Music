@@ -52,7 +52,6 @@
 
 <style scoped>
  .hot-div{
-     margin-top: 40px;
      display: flex;
      flex-direction: column;
      padding: 0 20px;

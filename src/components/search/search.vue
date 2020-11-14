@@ -19,36 +19,18 @@
         setup() {
 
             const store = useStore();
-            const searchWord = ref('');
+             const searchWord=computed({
+                 get:()=>store.state.searchWord,
+                 set:(word)=>store.dispatch('setWord', word)
 
-            const historyWordList = computed(() => {
-                return store.state.historyWordList
-            });
-            //
-            // // const searchWord=computed(()=>{
-            // //     return store.state.searchWord
-            // // });
-            //
+             });
             const setWord = (isSet) => {
                 store.dispatch('setWord', isSet ? searchWord.value : '');
                 searchWord.value = isSet ? searchWord.value : '';
             };
 
-
-            // const searchWord={
-            //     get(){
-            //         computed(()=>{
-            //             return store.state.searchWord
-            //         })
-            //     },
-            //     set(isSet){
-            //         store.dispatch('setWord',isSet?searchWord.value:'');
-            //     }
-            // };
-
             const getSearchList=store.dispatch('setHistoryList',{word:searchWord.value,isAdd:true});
 
-            // const {getSuggest}=usePrompt(keyWord);
             return {
                 searchWord,
                 setWord,
@@ -58,14 +40,6 @@
 
     }
 
-    // function usePrompt(keyWord){
-    //     const getSuggest=()=>{
-    //         console.log('1111111111122',keyWord.value);
-    //     }
-    //     return {
-    //         getSuggest
-    //     }
-    // }
 </script>
 
 <style scoped>

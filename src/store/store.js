@@ -1,5 +1,4 @@
-import {createStore} from 'vuex';
-
+import {createStore,createLogger } from 'vuex';
 
 // const state=function state(){
 //     return {
@@ -15,11 +14,12 @@ import {createStore} from 'vuex';
 // plugins: [createPersistedState()],
 
 export const store = createStore({
+    plugins: [createLogger()],
     state() {
         return {
             searchWord: '',//搜索
             searchType:1,//1显示热搜 2显示搜索提示 3搜索结果
-            historyWordList:[],//搜索历史
+            historyWordList:JSON.parse(localStorage.getItem('historyList')),//搜索历史
         }
     },
     getters() {
@@ -62,16 +62,18 @@ export const store = createStore({
         },
         setSearchHistoryList(state, info) {
             const {isAdd,word}={...info};
-            console.log('zzzzzzzzzzzzzzzzzzzzzzzz',info,isAdd,word);
+            console.log('zzzzzzzzzzzzzzzzzzzzzzzz',info,isAdd,Array.isArray(state.historyWordList));
 
             if(isAdd){
                 let hasOne=state.historyWordList.some(item=>item===word);
 
                 !hasOne&&word&&state.historyWordList.push(word);
+                localStorage.setItem('historyList',JSON.stringify(state.historyWordList))
                 console.log('setHistoryList11111111',word,hasOne,state.historyWordList);
             }
             else{
                 state.historyWordList.length=0;
+                localStorage.setItem('historyList',JSON.stringify([]))
 
             }
 
