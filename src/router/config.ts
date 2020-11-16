@@ -6,11 +6,11 @@ export const routes=[{
 },{
     path:'/searchView',
     name:'SearchView',
-    component:()=>import('@components/search/searchView.vue'),
+    component:()=>import('./../components/search/searchView.vue'),
 },
     {
         path:'/play',
         name:'Play',
-        component:()=>import('@components/play/play.vue'),
+        component:()=>import('./../components/play/play.vue'),
     }
 ];

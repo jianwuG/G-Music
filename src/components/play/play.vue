@@ -18,7 +18,7 @@
         props:{
             id:Number
         },
-        setup(props){
+        setup(){
             const state=reactive({
                 songInfo:{}
             });

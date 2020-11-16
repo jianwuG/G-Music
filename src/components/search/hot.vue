@@ -21,23 +21,23 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
     import {reactive,toRef,onMounted} from 'vue';
     import {useStore} from 'vuex';
-    import Http from '@util/api'
+    import Http from '../../util/api'
     export default {
         name: "hot",
         setup(){
-            const state=reactive({
+            const state:any=reactive({
                 searchHotList:[],
             });
             const store=useStore();
-            const goList=(searchWord)=>{
+            const goList=(searchWord:string)=>{
                 store.dispatch('setTypeAndWord',{type:3,word:searchWord});
                 store.dispatch('setHistoryList',{word:searchWord,isAdd:true})};
 
             onMounted(async ()=>{
-                let body=await Http.get('/search/hot/detail');
+                let body:any=await Http.get('/search/hot/detail',{});
                 console.log('1111',body.data.data);
                 state.searchHotList=[...body.data.data];
             });

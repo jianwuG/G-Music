@@ -9,12 +9,12 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
     import {reactive,toRef,toRefs,computed,onMounted,watch} from 'vue'
-    import Http from '@util/api'
+    import Http from '../../util/api'
     import {useStore} from 'vuex'
     export default {
-        name: "prompt",
+        name: "Prompt",
         setup(){
             const state=reactive({
                 suggestList:[]
@@ -23,9 +23,11 @@
             const searchWord=computed(()=>{
                 return store.state.searchWord
             });
-            const goList=(word)=> {store.dispatch('setTypeAndWord',{type:3,word:word});store.dispatch('setHistoryList',{word:searchWord.value,isAdd:true});};
+            const goList=(word:string)=> {store.dispatch('setTypeAndWord',{type:3,word:word});
+            store.dispatch('setHistoryList',{word:searchWord.value,isAdd:true});
+            };
 
-            onMounted(async ()=>searchWord&&await getSuggestList());
+            onMounted(async ()=>searchWord.value&&await getSuggestList());
 
             watch(searchWord,async (searchWord,prevSearchWord)=>{
                 if(prevSearchWord!==searchWord.replace(/\s+/g,"")){
@@ -34,10 +36,9 @@
 
             });
             async function getSuggestList(){
-                console.log('searchWord11111111111',searchWord.value);
                 if(searchWord.value){
                     let url='/search/suggest?keywords='+searchWord.value+'&type=mobile';
-                    const body=await Http.get(url);
+                    const body:any=await Http.get(url,{});
                     state.suggestList=body.data.result.allMatch;
                     console.log('获取输入提示1111',body.data.result.allMatch,toRefs(state));
                 }

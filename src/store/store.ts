@@ -1,14 +1,13 @@
 import {createStore,createLogger } from 'vuex';
 const historyList:string|null=localStorage.getItem('historyList');
+const state={
+    searchWord: '',//搜索
+    searchType:1,//1显示热搜 2显示搜索提示 3搜索结果
+    historyWordList:historyList&&JSON.parse(historyList)||[]
+};
 export const store = createStore({
     plugins: [createLogger()],
-    state() {
-        return {
-            searchWord: '',//搜索
-            searchType:1,//1显示热搜 2显示搜索提示 3搜索结果
-            historyWordList:historyList&&JSON.parse(historyList),//搜索历史
-        }
-    },
+    state:state,
     actions: {
 
         /**
@@ -42,7 +41,8 @@ export const store = createStore({
         setSearchHistoryList(state:any, info:{isAdd:boolean,word:string}) {
             const {isAdd,word}={...info};
             if(isAdd){
-                let hasOne=state.historyWordList.some((item:string)=>item===word);
+                let hasOne=state.historyWordList&&state.historyWordList.some((item:string)=>item===word);
+                console.log('ssssssssssssss',state.historyWordList,hasOne,word);
 
                 !hasOne&&word&&state.historyWordList.push(word);
                 localStorage.setItem('historyList',JSON.stringify(state.historyWordList));

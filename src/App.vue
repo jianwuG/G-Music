@@ -4,17 +4,13 @@
   </div>
 </template>
 
-<script lang="js">
-import '@assets/fontIcon/iconfont.css'
-import searchView from '@components/search/searchView'
+<script lang="ts">
+import './assets/fontIcon/iconfont.css'
 export default {
   name: 'App',
   setup(){
 
   },
-    components:{
-        searchView
-    }
 
 }
 </script>

@@ -12,10 +12,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
     import {reactive,toRef,onMounted,computed} from 'vue'
     import {useStore} from 'vuex'
-    import Http from '@util/api'
+    import Http from '../../util/api'
     import router from "../../router";
     export default {
         name: "List",
@@ -31,11 +31,11 @@
             onMounted(async()=>await getList())
            async function getList(){
                let url='/search?keywords='+searchWord.value;
-               let body=await Http.get(url);
+               let body:any=await Http.get(url,{});
                state.searchList=body.data.result.songs;
             }
 
-            const goPlay=id=>router.push({name:'Play',params:{id:id}});
+            const goPlay=(id:number|string)=>router.push({name:'Play',params:{id:id}});
             const searchList=toRef(state,'searchList')
             return{
                 searchList,

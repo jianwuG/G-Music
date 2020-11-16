@@ -4,6 +4,7 @@ import router from './router'
 import { store } from './store/store'
 import {Toast} from 'vant'
 
+// @ts-ignore
 const app = createApp(App);
 app.use(router);
 app.use(store);

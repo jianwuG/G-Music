@@ -9,7 +9,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
     import {computed} from 'vue';
     import {useStore} from 'vuex'
 
@@ -24,12 +24,12 @@
                  set:(word)=>store.dispatch('setWord', word)
 
              });
-            const setWord = (isSet) => {
+            const setWord = (isSet:boolean) => {
                 store.dispatch('setWord', isSet ? searchWord.value : '');
                 searchWord.value = isSet ? searchWord.value : '';
             };
 
-            const getSearchList=store.dispatch('setHistoryList',{word:searchWord.value,isAdd:true});
+            const getSearchList=()=>store.dispatch('setHistoryList',{word:searchWord.value,isAdd:true});
 
             return {
                 searchWord,

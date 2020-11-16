@@ -7,10 +7,10 @@ module.exports = {
         resolve: {
             //配置路径别名
             alias: {
-                '@': resolve('src'),
-                '@components':resolve('src/components'),
-                '@assets':resolve('src/assets'),
-                '@util':resolve('src/util'),
+                '@': resolve('./src'),
+                '@components':resolve('./src/components'),
+                '@assets':resolve('./src/assets'),
+                '@util':resolve('./src/util'),
 
             }
         }
