@@ -5,7 +5,7 @@ const state={
     searchType:1,//1显示热搜 2显示搜索提示 3搜索结果
     historyWordList:historyList&&JSON.parse(historyList)||[]
 };
-export const store = createStore({
+export default createStore({
     plugins: [createLogger()],
     state:state,
     actions: {
@@ -40,11 +40,18 @@ export const store = createStore({
         },
         setSearchHistoryList(state:any, info:{isAdd:boolean,word:string}) {
             const {isAdd,word}={...info};
-            if(isAdd){
-                let hasOne=state.historyWordList&&state.historyWordList.some((item:string)=>item===word);
-                console.log('ssssssssssssss',state.historyWordList,hasOne,word);
 
-                !hasOne&&word&&state.historyWordList.push(word);
+            if(isAdd){
+                let index=state.historyWordList&&state.historyWordList.findIndex((item:string)=>item===word);
+                console.log('ssssssssssssss',state.historyWordList,index,word);
+                if( !(index>-1)&&word){
+                    state.historyWordList.push(word);
+                }
+                else{
+                    state.historyWordList.splice(index,1);
+                    state.historyWordList.push(word);
+                }
+
                 localStorage.setItem('historyList',JSON.stringify(state.historyWordList));
             }
             else{

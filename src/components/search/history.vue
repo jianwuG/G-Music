@@ -3,7 +3,7 @@
       <div class="history-div">
          <i class="iconfont icon-shanchu del-icon" @click="clear"></i>
          <div class="item-all-div">
-            <div v-for="(item,index) in historyList" :key="index" class="history-div-item">
+            <div v-for="(item,index) in historyList" :key="index" class="history-div-item" @click="goList(item)">
                <span class="history-div-item-span">{{item}}</span>
             </div>
          </div>
@@ -19,13 +19,16 @@
         setup(){
            const store=useStore();
            const historyList=computed(()=>{
-              return store.state.historyWordList;
+              return store.state.historyWordList.reverse();
            });
            const clear=()=>store.dispatch('setHistoryList',{word:'',isAdd:false});
-
+           const goList=(item:string)=> {store.dispatch('setTypeAndWord',{type:3,word:item});
+              store.dispatch('setHistoryList',{word:item,isAdd:true});
+           };
            return{
               historyList,
-              clear
+              clear,
+              goList
            }
 
         }

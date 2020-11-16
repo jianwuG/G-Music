@@ -1,31 +1,10 @@
 {
-  "id": "2199399",
-  "name": "G-music",
+  "id": "",
+  "name": "",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
-    {
-      "icon_id": "15681631",
-      "name": "删除",
-      "font_class": "shanchu",
-      "unicode": "e602",
-      "unicode_decimal": 58882
-    },
-    {
-      "icon_id": "15681635",
-      "name": "搜索",
-      "font_class": "sousuo",
-      "unicode": "e603",
-      "unicode_decimal": 58883
-    },
-    {
-      "icon_id": "15682550",
-      "name": "关闭",
-      "font_class": "guanbi",
-      "unicode": "e607",
-      "unicode_decimal": 58887
-    },
     {
       "icon_id": "15775554",
       "name": "播放",
